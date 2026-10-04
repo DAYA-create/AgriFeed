@@ -1,20 +1,559 @@
+{% load static %}
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-    <title>FeedTrack Dashboard</title>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>AgriFeed - Dashboard</title>
+
+    <link rel="stylesheet"
+          href="{% static 'css/dashboard.css' %}">
+
 </head>
 
 <body>
 
-    <h1>FeedTrack Dashboard</h1>
+    <!-- =========================
+         SIDEBAR
+    ========================== -->
 
-    <h2>Welcome {{ user.username }}</h2>
+    <aside class="sidebar">
 
-    <p>You are logged in.</p>
+        <div class="sidebar-brand">
 
-    <a href="{% url 'logout' %}">
-        Logout
-    </a>
+            <div class="brand-icon">
+                🌾
+            </div>
+
+            <div>
+                <h2>AgriFeed</h2>
+                <span>Feed Management</span>
+            </div>
+
+        </div>
+
+
+        <nav class="sidebar-nav">
+
+            <a href="#" class="nav-item active">
+                <span>📊</span>
+                Dashboard
+            </a>
+
+            <a href="#" class="nav-item">
+                <span>🌾</span>
+                Feed Products
+            </a>
+
+            <a href="#" class="nav-item">
+                <span>📦</span>
+                Inventory
+            </a>
+
+            <a href="#" class="nav-item">
+                <span>🚚</span>
+                Suppliers
+            </a>
+
+            <a href="#" class="nav-item">
+                <span>🛒</span>
+                Purchases
+            </a>
+
+            <a href="#" class="nav-item">
+                <span>💰</span>
+                Sales
+            </a>
+
+            <a href="#" class="nav-item">
+                <span>📈</span>
+                Reports
+            </a>
+
+            <a href="#" class="nav-item">
+                <span>🔔</span>
+                Notifications
+            </a>
+
+        </nav>
+
+
+        <div class="sidebar-bottom">
+
+            <a href="#" class="nav-item">
+                ⚙️ Settings
+            </a>
+
+            <a href="{% url 'logout' %}"
+               class="logout-link">
+
+                🚪 Logout
+
+            </a>
+
+        </div>
+
+    </aside>
+
+
+    <!-- =========================
+         MAIN CONTENT
+    ========================== -->
+
+    <main class="main-content">
+
+
+        <!-- TOP BAR -->
+
+        <header class="topbar">
+
+            <div>
+
+                <p class="welcome-small">
+                    Welcome back 👋
+                </p>
+
+                <h1>
+                    Dashboard
+                </h1>
+
+            </div>
+
+
+            <div class="user-area">
+
+                <div class="notification-icon">
+                    🔔
+                    <span>3</span>
+                </div>
+
+                <div class="user-info">
+
+                    <div class="user-avatar">
+                        {{ request.user.username|first|upper }}
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            {{ request.user.username }}
+                        </strong>
+
+                        <small>
+                            Feed Dealer
+                        </small>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- =========================
+             SUMMARY CARDS
+        ========================== -->
+
+        <section class="summary-grid">
+
+
+            <div class="summary-card products">
+
+                <div class="card-icon">
+                    🌾
+                </div>
+
+                <div>
+
+                    <p>
+                        Total Products
+                    </p>
+
+                    <h2>
+                        0
+                    </h2>
+
+                    <span>
+                        Feed products
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="summary-card inventory">
+
+                <div class="card-icon">
+                    📦
+                </div>
+
+                <div>
+
+                    <p>
+                        Current Inventory
+                    </p>
+
+                    <h2>
+                        0
+                    </h2>
+
+                    <span>
+                        Total quantity
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="summary-card warning">
+
+                <div class="card-icon">
+                    ⚠️
+                </div>
+
+                <div>
+
+                    <p>
+                        Low Stock
+                    </p>
+
+                    <h2>
+                        0
+                    </h2>
+
+                    <span>
+                        Need attention
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="summary-card revenue">
+
+                <div class="card-icon">
+                    💰
+                </div>
+
+                <div>
+
+                    <p>
+                        Revenue
+                    </p>
+
+                    <h2>
+                        ₹0
+                    </h2>
+
+                    <span>
+                        This month
+                    </span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             DASHBOARD GRID
+        ========================== -->
+
+        <section class="dashboard-grid">
+
+
+            <!-- RECENT SALES -->
+
+            <div class="dashboard-card">
+
+                <div class="card-header">
+
+                    <div>
+
+                        <h3>
+                            Recent Sales
+                        </h3>
+
+                        <p>
+                            Latest customer transactions
+                        </p>
+
+                    </div>
+
+                    <a href="#">
+                        View All
+                    </a>
+
+                </div>
+
+
+                <div class="empty-state">
+
+                    <div class="empty-icon">
+                        🛒
+                    </div>
+
+                    <h4>
+                        No sales yet
+                    </h4>
+
+                    <p>
+                        Your recent sales will appear here.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- RECENT PURCHASES -->
+
+            <div class="dashboard-card">
+
+                <div class="card-header">
+
+                    <div>
+
+                        <h3>
+                            Recent Purchases
+                        </h3>
+
+                        <p>
+                            Latest supplier purchases
+                        </p>
+
+                    </div>
+
+                    <a href="#">
+                        View All
+                    </a>
+
+                </div>
+
+
+                <div class="empty-state">
+
+                    <div class="empty-icon">
+                        🚚
+                    </div>
+
+                    <h4>
+                        No purchases yet
+                    </h4>
+
+                    <p>
+                        Your recent purchases will appear here.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+        </section>
+
+
+        <!-- =========================
+             LOWER GRID
+        ========================== -->
+
+        <section class="dashboard-grid lower-grid">
+
+
+            <!-- LOW STOCK -->
+
+            <div class="dashboard-card">
+
+                <div class="card-header">
+
+                    <div>
+
+                        <h3>
+                            Low Stock Alerts
+                        </h3>
+
+                        <p>
+                            Products requiring attention
+                        </p>
+
+                    </div>
+
+                    <span class="alert-badge">
+                        0 Alerts
+                    </span>
+
+                </div>
+
+
+                <div class="empty-state small">
+
+                    <div class="empty-icon">
+                        📦
+                    </div>
+
+                    <h4>
+                        Inventory looks good
+                    </h4>
+
+                    <p>
+                        Low-stock products will appear here.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- WEATHER -->
+
+            <div class="dashboard-card weather-card">
+
+                <div class="card-header">
+
+                    <div>
+
+                        <h3>
+                            Weather & Storage
+                        </h3>
+
+                        <p>
+                            Feed storage recommendations
+                        </p>
+
+                    </div>
+
+                    <span class="weather-icon">
+                        ☀️
+                    </span>
+
+                </div>
+
+
+                <div class="weather-content">
+
+                    <div class="temperature">
+                        --°C
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Weather information
+                        </strong>
+
+                        <p>
+                            Weather data will appear here
+                            after API integration.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </section>
+
+
+        <!-- =========================
+             QUICK ACTIONS
+        ========================== -->
+
+        <section class="quick-actions">
+
+            <h3>
+                Quick Actions
+            </h3>
+
+            <div class="action-grid">
+
+                <a href="#" class="action-card">
+
+                    <span>➕</span>
+
+                    <div>
+                        <strong>
+                            Add Feed Product
+                        </strong>
+
+                        <small>
+                            Add a new product
+                        </small>
+                    </div>
+
+                </a>
+
+
+                <a href="#" class="action-card">
+
+                    <span>📦</span>
+
+                    <div>
+                        <strong>
+                            Add Purchase
+                        </strong>
+
+                        <small>
+                            Record supplier purchase
+                        </small>
+                    </div>
+
+                </a>
+
+
+                <a href="#" class="action-card">
+
+                    <span>💰</span>
+
+                    <div>
+                        <strong>
+                            Record Sale
+                        </strong>
+
+                        <small>
+                            Record customer sale
+                        </small>
+                    </div>
+
+                </a>
+
+
+                <a href="#" class="action-card">
+
+                    <span>📊</span>
+
+                    <div>
+                        <strong>
+                            View Reports
+                        </strong>
+
+                        <small>
+                            Analyze business data
+                        </small>
+                    </div>
+
+                </a>
+
+            </div>
+
+        </section>
+
+
+    </main>
 
 </body>
+
 </html>
